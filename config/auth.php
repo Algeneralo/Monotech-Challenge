@@ -37,8 +37,20 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver'   => 'sanctum',
+            'provider' => 'users',
+            'hash'     => false,
+        ],
+
+        'api-backoffice' => [
+            'driver'   => 'sanctum',
+            'provider' => 'backoffice',
+            'hash'     => false,
         ],
     ],
 
@@ -62,7 +74,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model'  => App\Models\User::class,
+        ],
+
+        'backoffice' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Backoffice::class,
         ],
 
         // 'users' => [

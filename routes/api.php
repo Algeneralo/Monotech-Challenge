@@ -20,5 +20,10 @@ Route::prefix('/v1')->group(function () {
 });
 
 Route::prefix('/backoffice')->group(function () {
+
     Route::post('/login', [Backoffice\Auth\LoginController::class, 'login']);
+
+    Route::middleware('auth:api-backoffice')->group(function () {
+        Route::apiResource('promotion-codes', Backoffice\PromotionCodesController::class)->only('index', 'show');
+    });
 });
