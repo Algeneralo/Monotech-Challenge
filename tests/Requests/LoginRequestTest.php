@@ -4,8 +4,8 @@ namespace Tests\Requests;
 
 
 use Tests\TestCase;
-use App\Http\Requests\LoginRequest;
 use Database\Factories\UserFactory;
+use App\Http\Requests\User\LoginRequest;
 
 class LoginRequestTest extends TestCase
 {

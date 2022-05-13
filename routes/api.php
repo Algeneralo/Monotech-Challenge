@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\User;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +14,6 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 Route::prefix('/v1')->group(function () {
-    Route::post('/register', [RegisterController::class, 'register']);
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/register', [User\Auth\RegisterController::class, 'register']);
+    Route::post('/login', [User\Auth\LoginController::class, 'login']);
 });

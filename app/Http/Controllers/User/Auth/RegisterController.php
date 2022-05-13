@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User\Auth;
 
 
 use App\Models\User;
 use App\Http\Resources\UserResource;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\User\RegisterRequest;
 use App\Http\Controllers\ApiBaseController;
 
 class RegisterController extends ApiBaseController

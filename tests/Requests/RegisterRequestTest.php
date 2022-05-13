@@ -4,7 +4,7 @@ namespace Tests\Requests;
 
 
 use Tests\TestCase;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\User\RegisterRequest;
 
 class RegisterRequestTest extends TestCase
 {

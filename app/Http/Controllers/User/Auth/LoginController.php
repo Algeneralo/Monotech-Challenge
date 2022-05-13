@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\User\Auth;
 
 
 use App\Models\User;
-use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Controllers\ApiBaseController;
 
 class LoginController extends ApiBaseController

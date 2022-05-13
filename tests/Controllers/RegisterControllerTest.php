@@ -3,9 +3,9 @@
 namespace Tests\Controllers;
 
 use Tests\TestCase;
-use App\Http\Requests\RegisterRequest;
 use Illuminate\Auth\Middleware\Authorize;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Requests\User\RegisterRequest;
+use App\Http\Controllers\User\Auth\RegisterController;
 
 class RegisterControllerTest extends TestCase
 {
