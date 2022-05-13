@@ -31,7 +31,7 @@ class RegisterControllerTest extends TestCase
             ]);
     }
 
-    public function register_validates_using_a_form_request()
+    public function test_register_validates_using_a_form_request()
     {
         $this->assertActionUsesFormRequest(
             RegisterController::class,

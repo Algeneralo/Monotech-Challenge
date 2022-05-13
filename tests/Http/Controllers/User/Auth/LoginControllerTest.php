@@ -17,7 +17,7 @@ class LoginControllerTest extends TestCase
         $this->withoutMiddleware(Authorize::class);
     }
 
-    public function test_user_can_register()
+    public function test_user_can_login()
     {
         $user = UserFactory::new()->create(['password' => '123456']);
 
@@ -32,7 +32,7 @@ class LoginControllerTest extends TestCase
             ]);
     }
 
-    public function register_validates_using_a_form_request()
+    public function test_login_validates_using_a_form_request()
     {
         $this->assertActionUsesFormRequest(
             LoginController::class,
