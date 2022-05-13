@@ -19,6 +19,7 @@ class RegisterControllerTest extends TestCase
     {
         $this->postJson('/api/v1/register', [
             'email'     => 'fake@example.com',
+            'username'  => 'userName',
             'password'  => '123456',
             'firstname' => 'FakeFirst',
             'lastname'  => 'FakeLast'

@@ -25,6 +25,10 @@ class RegisterRequestTest extends TestCase
                 'required',
                 'unique:users,email',
             ],
+            'username'  => [
+                'required',
+                'unique:users,username',
+            ],
             'password'  => [
                 'required',
                 'between:6,18',
