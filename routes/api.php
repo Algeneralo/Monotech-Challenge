@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\User;
+use App\Http\Controllers\Backoffice;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/v1')->group(function () {
     Route::post('/register', [User\Auth\RegisterController::class, 'register']);
     Route::post('/login', [User\Auth\LoginController::class, 'login']);
+});
+
+Route::prefix('/backoffice')->group(function () {
+    Route::post('/login', [Backoffice\Auth\LoginController::class, 'login']);
 });
