@@ -14,7 +14,7 @@ class RegisterController extends ApiBaseController
     {
         $user = User::query()->create($request->validated());
 
-        $data = (array) (new UserResource($user));
+        $data = (new UserResource($user))->resolve();
         $meta = ['token' => $user->createPlainTextToken()];
 
         return $this->response(data: $data, meta: $meta);

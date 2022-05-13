@@ -14,7 +14,7 @@ class LoginController extends ApiBaseController
     {
         $user = Backoffice::findByEmail($request->email);
 
-        $data = (array) (new BackofficeResource($user));
+        $data = (new BackofficeResource($user))->resolve();
         $meta = ['token' => $user->createPlainTextToken()];
 
         return $this->response(data: $data, meta: $meta);
