@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Controllers;
+namespace Tests\Http\Controllers\User\Auth;
 
 use Tests\TestCase;
 use Illuminate\Auth\Middleware\Authorize;

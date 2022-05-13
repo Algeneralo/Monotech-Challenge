@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Requests;
+namespace Tests\Http\Requests\User;
 
 
 use Tests\TestCase;
