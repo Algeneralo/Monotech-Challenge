@@ -6,6 +6,8 @@ namespace Tests\Http\Controllers\Backoffice;
 use Tests\TestCase;
 use Database\Factories\BackofficeFactory;
 use Database\Factories\PromotionCodeFactory;
+use App\Http\Requests\Backoffice\StorePromotionRequest;
+use App\Http\Controllers\Backoffice\PromotionCodesController;
 
 class PromotionCodesControllerTest extends TestCase
 {
@@ -76,5 +78,33 @@ class PromotionCodesControllerTest extends TestCase
                     'quota' => $promotion->quota
                 ]
             ]);
+    }
+
+    public function test_can_create_promotion()
+    {
+        $backoffice = BackofficeFactory::new()->create();
+
+        $data = [
+            'start_date' => now()->addDays(2)->toDateTimeString(),
+            'end_date'   => now()->addDays(4)->toDateTimeString(),
+            'amount'     => 500,
+            'quota'      => 50
+        ];
+
+        $this->actingAsBackoffice($backoffice)
+            ->postJson('api/backoffice/promotion-codes', $data)
+            ->assertSuccessful()
+            ->assertJson([
+                'data' => $data
+            ]);
+    }
+
+    public function test_store_validates_using_a_form_request()
+    {
+        $this->assertActionUsesFormRequest(
+            PromotionCodesController::class,
+            'store',
+            StorePromotionRequest::class
+        );
     }
 }

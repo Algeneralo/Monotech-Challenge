@@ -20,8 +20,8 @@ class PromotionCodeResource extends JsonResource
             'code'       => $this->code,
             'amount'     => $this->amount,
             'quota'      => $this->quota,
-            'start_date' => $this->start_date,
-            'end_date'   => $this->end_date,
+            'start_date' => $this->start_date->toDateTimeString(),
+            'end_date'   => $this->end_date->toDateTimeString(),
         ];
     }
 }
