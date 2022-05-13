@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use App\Http\Traits\EmailAuthenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use EmailAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,17 +46,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * @param string $email
-     * @return User
-     */
-    public static function findByEmail(string $email)
+    public function setPasswordAttribute($value)
     {
-        return self::query()->where('email', $email)->first();
-    }
-
-    public function createPlainTextToken()
-    {
-        return $this->createToken($this->id . $this->firstname)->plainTextToken;
+        if (!$value) {
+            return;
+        }
+        $this->attributes['password'] = bcrypt($value);
     }
 }
