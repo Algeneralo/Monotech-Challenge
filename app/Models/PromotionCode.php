@@ -31,6 +31,10 @@ class PromotionCode extends Model
         }
 
         return $code;
+    }
 
+    public function userPromotionCodes()
+    {
+        return $this->belongsToMany(User::class, 'user_promotions');
     }
 }
