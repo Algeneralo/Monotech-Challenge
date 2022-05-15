@@ -21,7 +21,7 @@ class LoginControllerTest extends TestCase
     {
         $user = UserFactory::new()->create(['password' => '123456']);
 
-        $this->postJson('/api/v1/login', [
+        $this->postJson('/api/login', [
             'email'    => $user->email,
             'password' => '123456',
         ])->assertSuccessful()
