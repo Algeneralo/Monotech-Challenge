@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [User\Auth\RegisterController::class, 'register']);
 Route::post('/login', [User\Auth\LoginController::class, 'login']);
 
-Route::middleware('auth:api-backoffice')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::post('/assign-promotion', [User\UserPromotionController::class, 'store']);
 });
 
