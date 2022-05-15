@@ -24,13 +24,18 @@ class PromotionCode extends Model
 
     public static function generateUniqueCode()
     {
-        $code = Str::random();
+        $code = Str::random(12);
 
         if (self::where('code', $code)->exists()) {
             self::generateUniqueCode();
         }
 
-        return $code;
+        return Str::upper($code);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_promotions');
     }
 
     public function userPromotionCodes()

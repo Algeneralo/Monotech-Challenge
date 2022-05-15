@@ -18,10 +18,13 @@ class PromotionCodeResource extends JsonResource
         return [
             'id'         => $this->id,
             'code'       => $this->code,
-            'amount'     => $this->amount,
-            'quota'      => $this->quota,
             'start_date' => $this->start_date->toDateTimeString(),
             'end_date'   => $this->end_date->toDateTimeString(),
+            'amount'     => $this->amount,
+            'quota'      => $this->quota,
+            'users'      => $this->whenLoaded('users', function () {
+                return UserResource::collection($this->users);
+            })
         ];
     }
 }

@@ -10,6 +10,10 @@ class LoginRequest extends FormRequest
 {
     public function authorize()
     {
+        if (!$this->email) {
+            abort(422, __('validation.required', ['attribute' => 'email']));
+        }
+
         $user = Backoffice::findByEmail($this->email);
 
         abort_if(!$user, 422, 'email_not_found');

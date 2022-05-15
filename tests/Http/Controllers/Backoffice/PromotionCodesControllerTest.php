@@ -6,6 +6,7 @@ namespace Tests\Http\Controllers\Backoffice;
 use Tests\TestCase;
 use Database\Factories\BackofficeFactory;
 use Database\Factories\PromotionCodeFactory;
+use Database\Factories\UserPromotionFactory;
 use App\Http\Requests\Backoffice\StorePromotionRequest;
 use App\Http\Controllers\Backoffice\PromotionCodesController;
 
@@ -28,6 +29,32 @@ class PromotionCodesControllerTest extends TestCase
                 'data' => [
                     [
                         'id', 'code', 'start_date', 'end_date', 'amount', 'quota'
+                    ]
+                ]
+            ]);
+    }
+
+    public function test_it_load_users_with_wallet()
+    {
+        $backoffice = BackofficeFactory::new()->create();
+
+        $promotionCode = PromotionCodeFactory::new()->create(['backoffice_id' => $backoffice->id]);
+        UserPromotionFactory::new()->create(['promotion_code_id' => $promotionCode->id]);
+
+        $this->actingAsBackoffice($backoffice)
+            ->getJson('api/backoffice/promotion-codes')
+            ->assertSuccessful()
+            ->assertJsonStructure([
+                'data' => [
+                    [
+                        'users' => [[
+
+                            'id', 'username', 'firstname', 'lastname', 'email',
+                            'wallet' => [
+                                'id', 'balance', 'updated_at'
+                            ]
+                        ]
+                        ]
                     ]
                 ]
             ]);

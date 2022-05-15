@@ -13,6 +13,7 @@ class PromotionCodesController extends ApiBaseController
     {
         $codes = PromotionCode::query()
             ->where('backoffice_id', auth()->id())
+            ->with('users', 'users.wallet')
             ->get();
 
         $data = PromotionCodeResource::collection($codes)->resolve();
@@ -22,7 +23,7 @@ class PromotionCodesController extends ApiBaseController
 
     public function show(PromotionCode $promotionCode)
     {
-        $data = (new PromotionCodeResource($promotionCode))->resolve();
+        $data = (new PromotionCodeResource($promotionCode->load('users', 'users.wallet')))->resolve();
 
         return $this->response(data: $data);
     }
